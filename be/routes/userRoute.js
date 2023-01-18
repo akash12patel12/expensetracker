@@ -5,8 +5,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 
 
-router.post('/register', ()=>{
-    console.log("here in route");
-});
+router.post('/register', userController.register);
+
 
 module.exports = router;

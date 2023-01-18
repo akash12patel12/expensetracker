@@ -6,10 +6,15 @@ const userRoutes = require('./routes/userRoute')
 
 
 const app = express();
-app.use(cors);
-
-app.use(userRoutes);
+// console.log("ran")
+app.use(cors());
 app.use(bodyParser.json());
+// app.get("/",(req ,res)=>{
+//     console.log("from app.js")
+//     res.send("shshhs")
+// })
+app.use(userRoutes);
+
 
 
 

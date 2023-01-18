@@ -6,7 +6,9 @@
         phone : e.target.phone.value,
         password : e.target.password.value
     };
-    axios.post('http://localhost:3000/register', user).then(res=>{
+    axios.post("http://localhost:3000/register", user).then(res=>{
         console.log(res);
-    });
+    }).catch(err=>{
+        console.log(err);
+    })
 }
