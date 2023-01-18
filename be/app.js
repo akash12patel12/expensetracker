@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const sequelize = require('./util/database');
 const userRoutes = require('./routes/userRoute')
 
 
@@ -15,7 +16,7 @@ app.use(bodyParser.json());
 // })
 app.use(userRoutes);
 
-
+sequelize.sync();
 
 
 app.listen(3000);

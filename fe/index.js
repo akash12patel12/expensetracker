@@ -7,8 +7,11 @@
         password : e.target.password.value
     };
     axios.post("http://localhost:3000/register", user).then(res=>{
-        console.log(res);
-    }).catch(err=>{
-        console.log(err);
+       if(res.data.errorMsg){
+           alert(res.data.errorMsg);
+       }
+       else{
+        alert("Success..")
+       }
     })
 }
