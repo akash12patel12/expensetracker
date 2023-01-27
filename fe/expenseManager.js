@@ -56,3 +56,14 @@ async function listExpenses() {
 }
 
 
+//delete
+
+function deleteExpense(id){
+  axios.post('http://localhost:3000/delete', {id : id}, config).then(response=>{
+    listExpenses();
+  })
+}
+
+
+
+
