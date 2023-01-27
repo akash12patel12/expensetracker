@@ -1,11 +1,11 @@
 const Expense  = require('../models/expense')
-
 exports.addex = (req,res)=>{
-    
     Expense.create({
         amount : req.body.amount,
         desc : req.body.desc,
-        cat : req.body.cat
+        cat : req.body.cat,
+        userEmId : req.user.userId
+
     }).then(result=>{
         res.status(201).json(result);
     }).catch(err=>{
@@ -14,7 +14,9 @@ exports.addex = (req,res)=>{
 }
 
 exports.getAll =(req,res)=>{
-    Expense.findAll().then(result=>{
+    // console.log(req.user);
+
+    Expense.findAll({where : {userEmId: req.user.userId}}).then(result=>{
         res.json(result)
     })
 }
