@@ -30,7 +30,7 @@ listExpenses();
 
 async function listExpenses() {
   document.getElementById("expenselist").innerHTML = `  <tr>
-    <th>Expense Id</th>
+    <th>Serial</th>
     <th>Description</th>
     <th>Category</th>
     <th>Amount</th>
@@ -44,7 +44,7 @@ async function listExpenses() {
       document.getElementById("expenselist").innerHTML =
         document.getElementById("expenselist").innerHTML +
         `<tr id="${expense.id}">
-        <td>${expense.id}</td>
+        <td></td>
         <td>${expense.desc}</td>  
         <td>${expense.cat}</td>
         <td>${expense.amount}</td>
@@ -63,6 +63,7 @@ function deleteExpense(id){
     listExpenses();
   })
 }
+
 
 
 
