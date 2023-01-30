@@ -20,7 +20,7 @@ exports.addex = (req, res) => {
 exports.getAll = (req, res) => {
   // console.log(req.user);
 
-  Expense.findAll({ where: { userEmId: req.user.userId } }).then((result) => {
+  Expense.findAll({ where: { userEmId: req.user.userId } , attributes : ['desc' , 'amount', 'cat'] }).then((result) => {
     res.json(result);
   });
 };

@@ -74,7 +74,7 @@ exports.getLeaderBoard = async (req,res)=> {
    User.findByPk(req.user.userId)
    .then(async user=>{
     if(user.isPremium){
-      const allUsers = await User.findAll({order : [['totalExpenses', 'DESC']]});
+      const allUsers = await User.findAll({ attributes : ['name', 'totalExpenses' ], order : [['totalExpenses', 'DESC']]});
       res.status(201).json(allUsers)
     }
     else {
