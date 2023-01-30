@@ -41,8 +41,25 @@ function loginuser(e) {
 function enablesignup() {
   document.getElementById("signupform").hidden = false;
   document.getElementById("loginform").hidden = true;
+  document.getElementById('forgotPasswordForm').hidden = true;
 }
 function enablelogin() {
   document.getElementById("loginform").hidden = false;
   document.getElementById("signupform").hidden = true;
+  document.getElementById('forgotPasswordForm').hidden = true;
+
+}
+
+
+function enablefp() {
+  document.getElementById("loginform").hidden = true;
+  document.getElementById("signupform").hidden = true;
+  document.getElementById('forgotPasswordForm').hidden = false;
+}
+
+function forgotpassword(e){
+  e.preventDefault();
+  axios.post('http://localhost:3000/forgotPassword', {email : e.target.email.value}).then(()=>{
+    console.log("Called");
+  })
 }

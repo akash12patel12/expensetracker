@@ -1,10 +1,8 @@
 const config = {
-  headers : {
-    'Authorization' : localStorage.getItem('token')
-  }
-}
-
-
+  headers: {
+    Authorization: localStorage.getItem("token"),
+  },
+};
 
 function submitExpense(e) {
   e.preventDefault();
@@ -14,17 +12,10 @@ function submitExpense(e) {
     cat: e.target.cat.value,
   };
 
-  axios.post("http://localhost:3000/addex",newExpense , config).then((res) => {
+  axios.post("http://localhost:3000/addex", newExpense, config).then((res) => {
     listExpenses();
   });
 }
-
-
-
-
-
-
-
 
 listExpenses();
 
@@ -55,17 +46,27 @@ async function listExpenses() {
   });
 }
 
-
 //delete
 
-function deleteExpense(id){
-  axios.post('http://localhost:3000/delete', {id : id}, config).then(response=>{
-    console.log(response);
-    listExpenses();
-  })
+function deleteExpense(id) {
+  axios
+    .post("http://localhost:3000/delete", { id: id }, config)
+    .then((response) => {
+      console.log(response);
+      listExpenses();
+    });
+}
+
+function logOut(e) {
+ e.preventDefault();
+ localStorage.clear();
+ window.location.href = "index.html";
 }
 
 
-
-
-
+checkLogin();
+function checkLogin(){
+  if(!localStorage.getItem('token')){
+    window.location.href = "index.html";
+  }
+}

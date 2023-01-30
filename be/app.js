@@ -10,15 +10,10 @@ const Expense  = require('./models/expense')
 const User = require("./models/user");
 const Order = require('./models/order');
 
-console.log(process.env)
 const app = express();
-// console.log("ran")
 app.use(cors());
 app.use(bodyParser.json());
-// app.get("/",(req ,res)=>{
-//     console.log("from app.js")
-//     res.send("shshhs")
-// })
+
 app.use(userRoutes);
 app.use(expenseRoutes);
 app.use(premiumRoutes);
