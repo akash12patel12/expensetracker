@@ -30,7 +30,7 @@ listExpenses();
 
 async function listExpenses() {
   document.getElementById("expenselist").innerHTML = `  <tr>
-    <th>Serial</th>
+   
     <th>Description</th>
     <th>Category</th>
     <th>Amount</th>
@@ -44,7 +44,7 @@ async function listExpenses() {
       document.getElementById("expenselist").innerHTML =
         document.getElementById("expenselist").innerHTML +
         `<tr id="${expense.id}">
-        <td></td>
+        
         <td>${expense.desc}</td>  
         <td>${expense.cat}</td>
         <td>${expense.amount}</td>
@@ -60,6 +60,7 @@ async function listExpenses() {
 
 function deleteExpense(id){
   axios.post('http://localhost:3000/delete', {id : id}, config).then(response=>{
+    console.log(response);
     listExpenses();
   })
 }

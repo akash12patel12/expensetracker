@@ -11,6 +11,7 @@ exports.register = (req, res) => {
         email: req.body.email,
         password: hash,
         phone: req.body.phone,
+        totalExpenses :  0
       })
         .then((r) => {
           res.json(r);

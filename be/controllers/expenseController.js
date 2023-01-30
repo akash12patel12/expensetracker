@@ -1,5 +1,6 @@
 const Expense = require("../models/expense");
 const User = require("../models/user");
+
 exports.addex = (req, res) => {
   Expense.create({
     amount: req.body.amount,
@@ -8,6 +9,7 @@ exports.addex = (req, res) => {
     userEmId: req.user.userId,
   })
     .then((result) => {
+      User.increment('totalExpenses', { by: req.body.amount, where: { id: req.user.userId} });
       res.status(201).json(result);
     })
     .catch((err) => {
@@ -28,7 +30,10 @@ exports.deleteOne = (req, res) => {
   Expense.findByPk(req.body.id).then((expense) => {
     if (expense) {
       if (expense.userEmId === req.user.userId) {
+        User.decrement('totalExpenses', { by:  expense.amount, where: { id: req.user.userId} });
         Expense.destroy({ where: { id: req.body.id } }).then((respo) => {
+          console.log(respo);
+          
           res.json(respo);
         });
       } else {

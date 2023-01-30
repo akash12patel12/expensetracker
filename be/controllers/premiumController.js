@@ -27,8 +27,7 @@ exports.purchase = (req, res) => {
 };
 
 exports.updatePayment = (req, res) => {
-  console.log(req.body);
-  console.log(req.user);
+  
   Order.update(
     {
       paymentid: req.body.payment_id,
@@ -68,4 +67,19 @@ exports.check  = async (req,res)=>{
    }
    else
     res.status(202).json({isPremium : false});
+}
+
+
+exports.getLeaderBoard = async (req,res)=> {
+   User.findByPk(req.user.userId)
+   .then(async user=>{
+    if(user.isPremium){
+      const allUsers = await User.findAll({order : [['totalExpenses', 'DESC']]});
+      res.status(201).json(allUsers)
+    }
+    else {
+      res.status(401).json({Message : "Please Buy Premium To See LeaderBoard"})
+    }
+   })
+   
 }
