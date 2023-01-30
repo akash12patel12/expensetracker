@@ -3,6 +3,7 @@ const configP = {
     Authorization: localStorage.getItem("token"),
   },
 };
+checkPremium();
 async function initiatePremium(e) {
   e.preventDefault();
   //    const token= localStorage.getItem('token');
@@ -28,6 +29,20 @@ async function initiatePremium(e) {
   rzp_fe.open();
   e.preventDefault();
   rzp_fe.on("payment.failed", function (response) {
+    
     alert("Something Went Wrong");
   });
 }
+
+///Check if user is premium
+
+  function checkPremium(){
+    axios.get('http://localhost:3000/checkpremium', configP).then(response=>{
+      console.log(response.data.isPremium);
+      if(response.data.isPremium){
+       const btn =  document.getElementById('premiumButton');
+       btn.innerText = "You Are A Premium User";
+       btn.setAttribute('disabled', 'true');
+    }});
+}
+

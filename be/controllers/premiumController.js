@@ -26,22 +26,46 @@ exports.purchase = (req, res) => {
   });
 };
 
-
-exports.updatePayment = (req,res)=>{
-    console.log(req.body);
-    console.log(req.user);
-    Order.update(
+exports.updatePayment = (req, res) => {
+  console.log(req.body);
+  console.log(req.user);
+  Order.update(
+    {
+      paymentid: req.body.payment_id,
+      status: "SUCCESSFUL",
+    },
+    {
+      where: { orderid: req.body.order_id },
+    }
+  )
+    .then(() => {
+      User.update(
         {
-            'paymentid' : req.body.payment_id,
-            'status' : "SUCCESSFUL"
+          isPremium: true,
         },
         {
-             where : {'orderid' : req.body.order_id}
+          where: { id: req.user.userId },
         }
-    ).then(()=>{
-        res.status(201).json({msg : 'updated'})
-    }).catch(err=>{
-        console.log(err);
+      )
+        .then(() => {
+          res.status(201).json({ msg: "updated" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     })
-   
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+exports.check  = async (req,res)=>{
+  // console.log("controllewr working");
+   const user = await User.findByPk(req.user.userId);
+   if(user.isPremium){
+     res.status(201).json({isPremium : true});
+   }
+   else
+    res.status(202).json({isPremium : false});
 }
