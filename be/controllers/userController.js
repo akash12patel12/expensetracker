@@ -48,9 +48,7 @@ exports.login = (req, res) => {
 };
 
 
-exports.forgotPassword =(req,res)=>{
-  console.log("ForgotPassword evoked on email :", req.body.email);
-}
+
 
 function generateToken(id){
   return jwt.sign({userId : id},  'secretkey');

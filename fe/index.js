@@ -59,7 +59,11 @@ function enablefp() {
 
 function forgotpassword(e){
   e.preventDefault();
-  axios.post('http://localhost:3000/forgotPassword', {email : e.target.email.value}).then(()=>{
-    console.log("Called");
+  axios.post('http://localhost:3000/forgotPassword', {email : e.target.email.value}).then((res)=>{
+    if(res.status === 201){
+      document.getElementById('mailSent').innerText = 'Email Sent'
+    }
+  }).catch(err=>{
+    console.log(err);
   })
 }

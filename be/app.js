@@ -6,6 +6,7 @@ const sequelize = require('./util/database');
 const userRoutes = require('./routes/userRoute')
 const expenseRoutes = require('./routes/expenseRoute')
 const premiumRoutes = require('./routes/premiumRoute');
+const mailRoutes = require('./routes/mailRoutes');
 const Expense  = require('./models/expense')
 const User = require("./models/user");
 const Order = require('./models/order');
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(userRoutes);
 app.use(expenseRoutes);
 app.use(premiumRoutes);
+app.use(mailRoutes);
 
 
 
