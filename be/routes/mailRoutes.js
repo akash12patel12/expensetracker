@@ -5,7 +5,7 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const router = express.Router();
 
-router.post('/forgotpassword',  mailController.forgotPassword );
+// router.post('/forgotpassword',  mailController.forgotPassword );
 
 
 
