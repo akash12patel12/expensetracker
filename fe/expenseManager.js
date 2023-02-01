@@ -70,3 +70,19 @@ function checkLogin(){
     window.location.href = "index.html";
   }
 }
+function download(e){
+  e.preventDefault();
+  axios.get("http:/localhost:3000/download" , config).then(res=>{
+    if(res.status === 201){
+      var a = document.createElement('a');
+      a.href = res.data.fileUrl;
+      a.download = 'myexpense.csv'
+      a.click();
+    }
+    else {
+      throw new Error(res.data.message)
+    }
+  }).catch(err=>{
+    console.log(err);
+  })
+}

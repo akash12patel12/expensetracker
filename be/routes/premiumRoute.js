@@ -8,4 +8,5 @@ router.get('/premium', userAuth.authenticate, premiumController.purchase)
 router.post('/updatePayment', userAuth.authenticate, premiumController.updatePayment);
 router.get('/checkpremium', userAuth.authenticate, premiumController.check);
 router.get('/getLeaderBoard',  userAuth.authenticate, premiumController.getLeaderBoard);
+router.get('/download',userAuth.authenticate, premiumController.downloader );
 module.exports = router;

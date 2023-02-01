@@ -83,3 +83,9 @@ exports.getLeaderBoard = async (req,res)=> {
    })
    
 }
+
+
+exports.downloader = (req,res)=>{
+   console.log("Dwnloader controller working");
+  res.send('Working');
+}
